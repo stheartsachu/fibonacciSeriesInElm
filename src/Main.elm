@@ -2,7 +2,8 @@ module Main exposing (..)
 
 import Browser
 import Debug exposing (toString)
-import Html exposing (Html, br, button, div, h2, li, p, text, ul)
+import Html exposing (Html, br, button, div, h2, h3, li, p, text, ul)
+import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
 
 
@@ -19,7 +20,7 @@ main =
 
 
 init =
-    30
+    20
 
 
 update model =
@@ -49,7 +50,7 @@ fibs x =
 createli : Int -> Html msg
 createli str =
     if str < init && modBy 2 str == 0 then
-        li [] [ text (toString str) ]
+        li [ style "listStyle" "none" ] [ text (toString str) ]
 
     else
         div [] []
@@ -57,5 +58,10 @@ createli str =
 
 view model =
     div []
-        [ fibs model |> List.map createli |> ul []
+        [ h2 [] [ text ("Current Input : " ++ toString model) ]
+        , p [] [ text "The even numbers in the fibonacci series less than the input" ]
+        , fibs model |> List.map createli |> ul []
+        , h3 [] [ text "fibonacci series the input : " ]
+        , text (toString (fibs model))
+        , p [] [ text "Change Model for other Input" ]
         ]
