@@ -49,7 +49,7 @@ fibs x =
 
 createli : Int -> Html msg
 createli str =
-    if str < init && modBy 2 str == 0 then
+    if str <= init && modBy 2 str == 0 then
         li [ style "listStyle" "none" ] [ text (toString str) ]
 
     else
